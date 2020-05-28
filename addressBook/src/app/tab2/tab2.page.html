@@ -1,17 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Add Contact
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <form #addToContactForm ngNoForm>
+    <ion-list>
+      <ion-item>
+        <ion-label>First Name:</ion-label>
+        <ion-input type="text" required="true" [(ngModel)]="storeItemToAdd.firstName"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label> Last Name:</ion-label>
+        <ion-input type="text" required="true" [(ngModel)]="storeItemToAdd.lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone Number:</ion-label>
+        <ion-input type="number" maxlength="10" required="true" [(ngModel)]="storeItemToAdd.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input type="email" required="true" [(ngModel)]="storeItemToAdd.email"></ion-input>
+      </ion-item>
+      <ion-item button="true" lines="none" (click)="validateAndSubmitForm(addToContactForm)">
+        <ion-icon name="add" slot="start"></ion-icon>
+        <ion-label>Add to Contact</ion-label>
+      </ion-item>
+    </ion-list>
+  </form>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let storeItem of ContactManager.items">
+      
+      <ion-label>
+        {{ storeItem.firstName }} {{storeItem.lastname}}
+      </ion-label>
+      
+      <ion-note>
+        {{ storeItem.email }}
+      </ion-note>
+      <ion-badge>
+        {{ storeItem.phone }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Search
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content class="ion-padding">
+  
+  <ion-input [(ngModel)]="firstname" name="firstname" style="border: 1px solid"></ion-input>
+  <ion-button (click)="onEnterCodeClick()">Enter Search</ion-button>
+  <p style="color: red" *ngIf="searchIsInvalid">Invalid Search</p>
+  <ion-button (click)="clearSearch()">Clear Search</ion-button>
+  <ion-list>
+    <ion-item *ngFor="let item of itemsSearched">
+      <ion-label>{{ item.firstName }} {{ item.lastname }}</ion-label>
+      <ion-note>
+        {{ item.email }}
+      </ion-note>
+      <ion-badge>{{ item.phone }}</ion-badge>
+    </ion-item>
+  </ion-list>
 </ion-content>

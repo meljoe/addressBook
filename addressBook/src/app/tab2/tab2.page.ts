@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ContactManagerService, StoreContact} from '../contact-manager.service';
+import { AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,40 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  public storeItemToAdd: StoreContact = {
+    firstName: '',
+    lastName: '',
+    phone: 0,
+    email:''
+  };
+
+  constructor(
+    public ContactManager: ContactManagerService,
+    private alertController: AlertController
+  ) {}
+
+  async validateAndSubmitForm(form: HTMLFormElement){
+    if(form.reportValidity()){
+      let success = this.ContactManager.addToContact(this.storeItemToAdd);
+
+      if(success){
+        this.storeItemToAdd = {
+          firstName: '',
+          lastName: '',
+          phone:0,
+          email:''
+
+        };
+
+      }
+      else{
+        const alert = await this.alertController.create({
+          message: 'Phone Number Already  Exists',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    }
+  }
 
 }

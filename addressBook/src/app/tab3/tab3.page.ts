@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {ContactManagerService, StoreContact} from '../contact-manager.service';
+import {AlertController} from '@ionic/angular';
+  import { from } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +10,9 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(
+    public contactManager: ContactManagerService,
+    private alertCtrl: AlertController
+  ) {}
 
 }
