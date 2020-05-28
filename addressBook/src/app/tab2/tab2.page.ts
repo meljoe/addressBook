@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {ContactManagerService, StoreContact} from '../contact-manager.service';
 import { AlertController} from '@ionic/angular';
 
@@ -9,6 +9,8 @@ import { AlertController} from '@ionic/angular';
 })
 export class Tab2Page {
 
+  
+
   public storeItemToAdd: StoreContact = {
     firstName: '',
     lastName: '',
@@ -18,7 +20,8 @@ export class Tab2Page {
 
   constructor(
     public ContactManager: ContactManagerService,
-    private alertController: AlertController
+    public alertController: AlertController
+    
   ) {}
 
   async validateAndSubmitForm(form: HTMLFormElement){

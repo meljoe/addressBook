@@ -11,30 +11,31 @@
     <ion-list>
       <ion-item>
         <ion-label>First Name:</ion-label>
-        <ion-input type="text" required="true" [(ngModel)]="storeItemToAdd.firstName"></ion-input>
+        <ion-input  type="text" required="true" [(ngModel)]="storeItemToAdd.firstName"></ion-input>
       </ion-item>
       
       <ion-item>
         <ion-label> Last Name:</ion-label>
-        <ion-input type="text" required="true" [(ngModel)]="storeItemToAdd.lastname"></ion-input>
+        <ion-input  type="text" required="true" [(ngModel)]="storeItemToAdd.lastname"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Phone Number:</ion-label>
-        <ion-input type="number" maxlength="10" required="true" [(ngModel)]="storeItemToAdd.phone"></ion-input>
+        <ion-input  type="number" maxlength="10" required="true" [(ngModel)]="storeItemToAdd.phone"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Email:</ion-label>
-        <ion-input type="email" required="true" [(ngModel)]="storeItemToAdd.email"></ion-input>
+        <ion-input  type="email" required="true" [(ngModel)]="storeItemToAdd.email"></ion-input>
       </ion-item>
       <ion-item button="true" lines="none" (click)="validateAndSubmitForm(addToContactForm)">
         <ion-icon name="add" slot="start"></ion-icon>
         <ion-label>Add to Contact</ion-label>
       </ion-item>
+      
     </ion-list>
   </form>
-
+ 
   <ion-list>
-    <ion-item *ngFor="let storeItem of ContactManager.items">
+    <ion-item *ngFor="let storeItem of ContactManager.items; let i = index">
       
       <ion-label>
         {{ storeItem.firstName }} {{storeItem.lastname}}
@@ -46,6 +47,13 @@
       <ion-badge>
         {{ storeItem.phone }}
       </ion-badge>
+      <button ion-button clear (click)="updateContact(i)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button clear (click)="ContactManager.deleteContact(i)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
+
 </ion-content>

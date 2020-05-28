@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Storage} from '@ionic/storage';
 
+
 const SETTINGSTOKEN: string = 'setting';
 const ITEMSTOKEN: string = 'items';
 
@@ -11,9 +12,11 @@ export class ContactManagerService {
 
   searchType: string = 'firstName';
   items: Array<StoreContact> = [];
+  
 
   constructor(
     private storage: Storage
+    
   ) { 
     this.initialize();
   }
@@ -56,7 +59,16 @@ export class ContactManagerService {
       this.storage.set(ITEMSTOKEN, this.items);
     }
     return (!exists);
+  
+  
   }
+
+  deleteContact(index) {
+    this.items.splice(index, 1);
+  }
+
+  
+
 }
 
 export interface  StoreContact{
