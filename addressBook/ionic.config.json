@@ -1,0 +1,7 @@
+{
+  "name": "addressBook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
